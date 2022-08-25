@@ -1,0 +1,4 @@
+project: PROJECT
+target: fuzz_JBIG2
+cmds:
+- cmd: /out/fuzz_JBIG2
