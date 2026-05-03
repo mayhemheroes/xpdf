@@ -29,6 +29,7 @@ limitations under the License.
 #include "GString.h"
 #include "gfile.h"
 #include "GlobalParams.h"
+#include "LocalParams.h"
 #include "Object.h"
 #include "PDFDoc.h"
 #include "SplashBitmap.h"
@@ -111,8 +112,9 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
             SplashOutputDev *splashOut = new SplashOutputDev(splashModeRGB8, 1, gFalse, paperColor);
             splashOut->setNoComposite(gTrue);
             splashOut->startDoc(doc.getXRef());
+            LocalParams localParams;
             for (size_t i = 0; i <= doc.getNumPages(); ++i) {
-              doc.displayPage(splashOut, i, hdpi, vdpi, rotate, useMediaBox, crop, printing);
+              doc.displayPage(splashOut, &localParams, i, hdpi, vdpi, rotate, useMediaBox, crop, printing);
             }
             (void)splashOut->getBitmap();
 

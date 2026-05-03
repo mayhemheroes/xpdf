@@ -17,6 +17,7 @@
 FROM gcr.io/oss-fuzz-base/base-builder
 COPY . freetype
 RUN rm -rf freetype/mayhem
+RUN git clone --depth=1 https://github.com/nyorain/dlg.git freetype/subprojects/dlg
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y make wget cmake qtbase5-dev libcups2-dev autoconf automake autotools-dev libtool
 RUN wget https://dl.xpdfreader.com/xpdf-latest.tar.gz
